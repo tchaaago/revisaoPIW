@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Professores de Hogwarts</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .card {
+      width: 150px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 6px;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Professores de Hogwarts</h1>
+  <div id="container">Carregando...</div>
+
+  <script>
+    async function carregarProfessores() {
+      try {
+        const resposta = await fetch('https://hp-api.onrender.com/api/characters/staff');
+        if (!resposta.ok) {
+          throw new Error(`Erro na requisição: ${resposta.status}`);
+        }
+
+        const professores = await resposta.json();
+        const container = document.getElementById('container');
+        container.innerHTML = '';
+        professores.forEach(professor => {
+          const card = document.createElement('div');
+          card.classList.add('card');
+
+          const imagem = document.createElement('img');
+          imagem.src = professor.image;
+          imagem.alt = professor.name;
+
+          const nome = document.createElement('p');
+          nome.textContent = professor.name;
+
+          card.appendChild(imagem);
+          card.appendChild(nome);
+          container.appendChild(card);
+        });
+      } catch (erro) {
+        console.error("Erro ao buscar dados:", erro);
+        document.getElementById('container').textContent = "Erro ao carregar os dados.";
+      }
+    }
+
+    carregarProfessores();
+  </script>
+</body>
+</html>

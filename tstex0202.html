@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokémon</title>
+</head>
+<body>
+  <script>
+    let contadorPokemon = 1;
+
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.addEventListener("click", () => {
+        const img = document.createElement("img");
+        img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${contadorPokemon}.png`;
+        img.alt = `Pokemon #${contadorPokemon}`;
+        img.style.width = "60px";
+        img.style.margin = "5px";
+
+        document.body.appendChild(img);
+        contadorPokemon++;
+      });
+    });
+  </script>
+</body>
+</html>

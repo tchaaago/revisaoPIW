@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" id="minhaPagina">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon</title>
+</head>
+<body>
+    <p>
+        <img id="imgpokemon">
+    </p>
+</body>
+</html>
+<script>
+    let contadorPokemon = 1;
+    const imgpoke = document.getElementById("imgpokemon");
+    document.getElementById("minhaPagina").addEventListener("click",()=>{
+        let minhaURL = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${contadorPokemon}.png`
+        let minhaImagem = document.createElement("img")
+        contadorPokemon++;
+        minhaImagem.src = minhaURL;
+        document.body.appendChild(minhaImagem)
+    })
+</script>
