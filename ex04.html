@@ -71,7 +71,7 @@
 
         const cafes = await resposta.json();
         const menu = document.getElementById('menu');
-        menu.innerHTML = ''; // Limpa o "Carregando..."
+        menu.innerHTML = '';
 
         cafes.forEach(cafe => {
           const card = document.createElement('div');
